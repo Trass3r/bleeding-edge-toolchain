@@ -17,6 +17,7 @@ jobs:
     - name: build
       run: docker run --rm -v`pwd`:/mnt/host buildgcc
     - run: echo "::set-env name=DATE::$(date '+%y%m%d')"
+    - run: ls -la
     - uses: actions/upload-artifact@v1
       with:
         name: native
