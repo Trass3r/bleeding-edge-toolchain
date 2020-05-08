@@ -1071,7 +1071,7 @@ buildMingw() {
 if [ "${enableWin32}" = "y" ]; then
 	buildMingw \
 		"i686-w64-mingw32" \
-		"-O3 -g -pipe -Wp,-D_FORTIFY_SOURCE=2 -fexceptions --param=ssp-buffer-size=4" \
+		"-O3 -g -pipe" \
 		${buildWin32} \
 		${installWin32} \
 		${pythonWin32} \
@@ -1082,7 +1082,7 @@ fi
 if [ "${enableWin64}" = "y" ]; then
 	buildMingw \
 		"x86_64-w64-mingw32" \
-		"-O3 -g -pipe -Wp,-D_FORTIFY_SOURCE=2 -fexceptions --param=ssp-buffer-size=4" \
+		"-O3 -g -pipe" \
 		${buildWin64} \
 		${installWin64} \
 		${pythonWin64} \
