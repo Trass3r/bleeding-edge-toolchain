@@ -10,19 +10,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - uses: Trass3r/setup-cpp@master
     - name: prerequisites
       run: docker build -t buildgcc .
     - name: build
       run: docker run --rm -v`pwd`:/github/workspace buildgcc
     - run: echo "::set-env name=DATE::$(date '+%y%m%d')"
-    - uses: actions/upload-artifact@v1
+    - uses: actions/upload-artifact@v2
       with:
         name: native
         path: arm-none-eabi-gcc-master-${{ env.DATE }}.tar.xz
 
-    - uses: actions/upload-artifact@v1
+    - uses: actions/upload-artifact@v2
       with:
         name: win64
         path: arm-none-eabi-gcc-master-${{ env.DATE }}-win64.7z
@@ -33,10 +33,10 @@ jobs:
 
     steps:
     - run: echo "::set-env name=DATE::$(date '+%y%m%d')"
-    - uses: actions/download-artifact@v1
+    - uses: actions/download-artifact@v2
       with:
         name: native
-    - uses: actions/download-artifact@v1
+    - uses: actions/download-artifact@v2
       with:
         name: win64
     - name: Create Release
@@ -47,7 +47,7 @@ jobs:
       with:
         tag_name: v${{ env.DATE }}
         release_name: v${{ env.DATE }}
-    - uses: actions/upload-release-asset@v1.0.1
+    - uses: actions/upload-release-asset@v1.0.2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -55,7 +55,7 @@ jobs:
         asset_path: native/arm-none-eabi-gcc-master-${{ env.DATE }}.tar.xz
         asset_name: arm-none-eabi-gcc.tar.xz
         asset_content_type: application/x-xz
-    - uses: actions/upload-release-asset@v1.0.1
+    - uses: actions/upload-release-asset@v1.0.2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
