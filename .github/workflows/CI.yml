@@ -15,7 +15,7 @@ jobs:
     - name: prerequisites
       run: docker build -t buildgcc .
     - name: build
-      run: docker run --rm -v`pwd`:/mnt/host buildgcc
+      run: docker run --rm -v`pwd`:/github/workspace buildgcc
     - run: echo "::set-env name=DATE::$(date '+%y%m%d')"
     - uses: actions/upload-artifact@v1
       with:
